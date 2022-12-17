@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "compatibilityLevel": "JAVA_8",
+    "package": "io.bluebeaker.nogravity.mixin",
+    "mixins": [
+      "MixinFallingBlock",
+      "MixinParticle"
+    ],
+    "client": [
+    ],
+    "server": [
+    ],
+    "injectors": {
+      "defaultRequire": 1
+    },
+    "refmap": "mixins.nogravity.refmap.json"
+  }
