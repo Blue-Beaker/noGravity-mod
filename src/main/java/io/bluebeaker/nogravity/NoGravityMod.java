@@ -1,7 +1,10 @@
 package io.bluebeaker.nogravity;
 
+import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,6 +37,13 @@ public class NoGravityMod
     public void onMining(PlayerEvent.BreakSpeed event){
         if(!event.getPlayer().isOnGround() && event.getPlayer().isNoGravity()){
             event.setNewSpeed(event.getNewSpeed()*5.0f);
+        }
+    }
+    // Remove fall damage
+    @SubscribeEvent
+    public void onFall(LivingFallEvent event){
+        if(event.getEntity().isNoGravity()){
+            event.setCanceled(true);
         }
     }
 }
