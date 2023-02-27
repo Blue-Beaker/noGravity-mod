@@ -1,0 +1,16 @@
+[
+{
+  "modid": "nogravity",
+  "name": "No Gravity",
+  "description": "A mod that removes gravity for players, entities and falling blocks.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Blue_Beaker"],
+  "credits": "",
+  "logoFile": "icon.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
