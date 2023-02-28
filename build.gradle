@@ -1,10 +1,13 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net/' }
+        maven {
+        url "https://plugins.gradle.org/m2/"
+        }
         mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
         classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
@@ -14,7 +17,16 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
-
+repositories {
+	mavenLocal()
+	mavenCentral()
+    maven { url = 'https://maven.minecraftforge.net/' }
+	maven {
+		name = 'sponge'
+		url = 'http://repo.spongepowered.org/maven'
+        allowInsecureProtocol = true
+	}
+}
 version = '1.1'
 group = 'io.bluebeaker.nogravity' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'nogravity'
@@ -59,6 +71,10 @@ minecraft {
     }
 }
 
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
@@ -66,6 +82,11 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2859'
 
     // Apply Mixin AP
+    embed('org.spongepowered:mixin:0.8.5') {
+        exclude module: 'guava'
+        exclude module: 'commons-io'
+        exclude module: 'gson'
+    }
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     // You may put jars on which you depend on in ./libs or you may define them like so..
@@ -94,6 +115,11 @@ mixin {
 }
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
+    from {
+        configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "LICENSE.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
+    }
     manifest {
         attributes([
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
