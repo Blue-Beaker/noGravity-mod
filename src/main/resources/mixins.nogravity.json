@@ -4,7 +4,9 @@
     "package": "io.bluebeaker.nogravity.mixin",
     "mixins": [
       "MixinFallingBlock",
-      "MixinParticle"
+      "MixinParticle",
+      "MixinArrow",
+      "AccessorArrow"
     ],
     "client": [
     ],
