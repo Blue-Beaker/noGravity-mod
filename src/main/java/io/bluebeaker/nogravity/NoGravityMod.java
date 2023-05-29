@@ -16,9 +16,10 @@ import org.apache.logging.log4j.Logger;
 public class NoGravityMod
 {
     private static final Logger LOGGER = LogManager.getLogger();
-
+    public static final String MODID = "nogravity";
     public NoGravityMod() {
         MinecraftForge.EVENT_BUS.register(this);
+        ConfigRegistry.setupClient();
     }
     // Apply NoGravity on entity spawn
     @SubscribeEvent

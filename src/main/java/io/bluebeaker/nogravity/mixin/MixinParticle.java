@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import io.bluebeaker.nogravity.ConfigRegistry;
 import net.minecraft.client.particle.Particle;
 
 @Mixin(Particle.class)
@@ -14,6 +15,7 @@ public abstract class MixinParticle {
     @Shadow float gravity;
     @Inject(method = "tick", at = @At("RETURN"))
     public void tick(CallbackInfo ci){
+        if(ConfigRegistry.NoGravityParticle.get())
         this.gravity=0.0F;
     }
 }
