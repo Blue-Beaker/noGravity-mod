@@ -6,6 +6,7 @@
       "MixinFallingBlock",
       "MixinParticle",
       "MixinArrow",
+      "MixinProjectileEntity",
       "AccessorArrow"
     ],
     "client": [

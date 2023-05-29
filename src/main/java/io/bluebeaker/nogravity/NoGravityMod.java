@@ -20,6 +20,7 @@ public class NoGravityMod
     public NoGravityMod() {
         MinecraftForge.EVENT_BUS.register(this);
         ConfigRegistry.setupClient();
+        ConfigRegistry.setupCommon();
     }
     // Apply NoGravity on entity spawn
     @SubscribeEvent
