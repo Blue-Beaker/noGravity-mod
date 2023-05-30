@@ -6,9 +6,14 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig.Type;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.electronwill.nightconfig.core.Config;
 
 // The value here should match an entry in the META-INF/mods.toml file
 
@@ -19,8 +24,11 @@ public class NoGravityMod
     public static final String MODID = "nogravity";
     public NoGravityMod() {
         MinecraftForge.EVENT_BUS.register(this);
-        ConfigRegistry.setupClient();
-        ConfigRegistry.setupCommon();
+        ModLoadingContext.get().registerConfig(Type.COMMON, ConfigRegistry.COMMON_CONFIG);
+        ModLoadingContext.get().registerConfig(Type.CLIENT, ConfigRegistry.CLIENT_CONFIG);
+
+        // ConfigRegistry.setupClient();
+        // ConfigRegistry.setupCommon();
     }
     // Apply NoGravity on entity spawn
     @SubscribeEvent
