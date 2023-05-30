@@ -3,11 +3,7 @@ package io.bluebeaker.nogravity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.WritingMode;
-
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.loading.FMLPaths;
 
 public class ConfigRegistry {
 	private static final ForgeConfigSpec.Builder CFGC = new ForgeConfigSpec.Builder();
@@ -45,23 +41,4 @@ public class ConfigRegistry {
 		ProjectilesToClean=CFG.comment("ID of other projectile types to be cleaned.").define("projectiles_to_clean",DefaultProjectilesToClean);
 		COMMON_CONFIG = CFG.build();
 	}
-	// public static void setupClient() {
-	// 	final CommentedFileConfig configData = CommentedFileConfig.builder(FMLPaths.CONFIGDIR.get().resolve(NoGravityMod.MODID + "-client.toml"))
-	// 		.sync()
-	// 		.autosave()
-	// 		.writingMode(WritingMode.REPLACE)
-	// 		.build();
-	// 	configData.load();
-	// 	CLIENT_CONFIG.setConfig(configData);
-	// }
-	// public static void setupCommon() {
-	// 	final CommentedFileConfig configData = CommentedFileConfig.builder(FMLPaths.CONFIGDIR.get().resolve(NoGravityMod.MODID + "-common.toml"))
-	// 		.sync()
-	// 		.autosave()
-	// 		.writingMode(WritingMode.REPLACE)
-	// 		.build();
-	// 	configData.load();
-	// 	COMMON_CONFIG.setConfig(configData);
-
-	// }
 }
