@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import io.bluebeaker.nogravity.ConfigRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +18,7 @@ public abstract class MixinFallingBlock {
     //Remove blocks falling action
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void tick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci){
+        if(ConfigRegistry.NoFallingBlocks.get())
         ci.cancel();
     }
 }

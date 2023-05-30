@@ -35,7 +35,7 @@ public class NoGravityMod
     // Modify mining speed to negate 'not on ground' penalty
     @SubscribeEvent
     public void onMining(PlayerEvent.BreakSpeed event){
-        if(!event.getPlayer().isOnGround() && event.getPlayer().isNoGravity()){
+        if(ConfigRegistry.NegateMiningSpeedPenalty.get() && !event.getPlayer().isOnGround() && event.getPlayer().isNoGravity()){
             event.setNewSpeed(event.getNewSpeed()*5.0f);
         }
     }
